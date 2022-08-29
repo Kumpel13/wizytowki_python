@@ -35,32 +35,33 @@ class BusinessContact(BaseContact):
 private_contact = BaseContact()
 business_card = BusinessContact()
 
-def create_contacts():
-    names = []
-    num = int(input("ile wizytowek?"))
-    for i in range(num):
-        names.append(str(private_contact))
-        print (names)
-   
-contacts = input("Wybierz rodzaj wizytówki, wpisując: Base lub Business ")
-    
-if contacts == 'Base':
-    list = create_contacts()    
-    print(list)
+def create_contacts(card_type, n=10):
+    output = []
+    for i in range(n):
+        if card_type == "Base":
+            output.append (str(BaseContact(name=faker.name(), phone_number=faker.phone_number(), mail= faker.email())))
+            return (output)
+        elif card_type == "Business":
+            output.append (str(BusinessContact(name=faker.name(), job=faker.job(), company=faker.company(), business_phone=faker.phone_number())))
+            return (output)
+    else:
+        print("Zły wybór, proszę spróbuj ponownie")
+        exit    
 
-elif contacts == 'Business':
-    input("Podaj ilość wizytówek ")
 
-else:
-    print("błąd wyboru, spórbuj ponownie")
-    exit
-
+contacts = create_contacts(input("Wybierz rodzaj wizytówki, wpisując 'Base' lub 'Business': "))
 
 print('\n')
 print(private_contact.contact())
 print(business_card.contact())
 print('\n')
 print(private_contact.label_length)
+
+print(contacts)
+
+
+
+
 
 
 
