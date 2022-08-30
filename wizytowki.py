@@ -10,7 +10,10 @@ class BaseContact:
         self.mail = mail
 
     def __str__(self):
-        return f'{self.name}, {self.phone_number}, {self.mail}' 
+        return f'{self.name}, {self.phone_number}, {self.mail}'
+
+    def __repr__(self):
+        return f"Imię i nazwisko: {self.name}, telefon: {self.phone_number}, e-mail: {self.mail}"     
 
     def contact(self):
         return f"Wybieram numer {self.phone_number} i dzwonię do {self.name}"
@@ -29,6 +32,9 @@ class BusinessContact(BaseContact):
     def __str__(self):
         return f'{self.job}, {self.company}, {self.business_phone}'
 
+    def __repr__(self):
+        return f"Imię i nazwisko: {self.name}, telefon służbowy: {self.business_phone}, e-mail: {self.mail}, pozycja: {self.job}, firma: {self.company}"         
+
     def contact(self):
         return f"Wybieram numer {self.business_phone} i dzwonię do {self.name}"    
 
@@ -39,26 +45,24 @@ def create_contacts(card_type, n=10):
     output = []
     for i in range(n):
         if card_type == "Base":
-            output.append (str(BaseContact(name=faker.name(), phone_number=faker.phone_number(), mail= faker.email())))
+            output.append (BaseContact(name=faker.name(), phone_number=faker.phone_number(), mail= faker.email()))
             return (output)
         elif card_type == "Business":
-            output.append (str(BusinessContact(name=faker.name(), job=faker.job(), company=faker.company(), business_phone=faker.phone_number())))
+            output.append (BusinessContact(name=faker.name(), job=faker.job(), company=faker.company(), business_phone=faker.phone_number()))
             return (output)
     else:
         print("Zły wybór, proszę spróbuj ponownie")
         exit    
 
-
 contacts = create_contacts(input("Wybierz rodzaj wizytówki, wpisując 'Base' lub 'Business': "))
 
-print('\n')
+
 print(private_contact.contact())
 print(business_card.contact())
 print('\n')
 print(private_contact.label_length)
-
-print(contacts)
-
+print('\n')
+print (contacts)
 
 
 
