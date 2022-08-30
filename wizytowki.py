@@ -45,24 +45,22 @@ def create_contacts(card_type, n=10):
     output = []
     for i in range(n):
         if card_type == "Base":
-            output.append (BaseContact(name=faker.name(), phone_number=faker.phone_number(), mail= faker.email()))
-            return (output)
+            output.append (BaseContact(name=faker.name(), phone_number=faker.phone_number(), mail= faker.email()))    
         elif card_type == "Business":
-            output.append (BusinessContact(name=faker.name(), job=faker.job(), company=faker.company(), business_phone=faker.phone_number()))
-            return (output)
+            output.append (BusinessContact(name=faker.name(), job=faker.job(), company=faker.company(), business_phone=faker.phone_number()))                    
     else:
         print("Zły wybór, proszę spróbuj ponownie")
         exit    
+    return (output) 
 
 contacts = create_contacts(input("Wybierz rodzaj wizytówki, wpisując 'Base' lub 'Business': "))
 
-
-print(private_contact.contact())
-print(business_card.contact())
-print('\n')
-print(private_contact.label_length)
-print('\n')
-print (contacts)
+#print(private_contact.contact())
+#print(business_card.contact())
+#print('\n')
+#print(private_contact.label_length)
+#print('\n')
+#print (contacts)
 
 
 
